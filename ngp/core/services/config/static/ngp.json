@@ -1,0 +1,12 @@
+{
+    "email_config": {
+        "smtp_host": "smtp.freesmtpservers.com",
+        "smtp_port": 25,
+        "smtp_ssl": false,
+        "email_to": "sanmuk21@gmail.com",
+        "email_from": "iam.san.muk@gmail.com"
+    }
+}
+
+
+
