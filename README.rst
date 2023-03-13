@@ -6,8 +6,8 @@
 Airflow NGP (Next Gen Data Pipeline)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Airflow NGP is a configuration driven DAG generation framework for Airflow.Not only it allow creation of DAGs but also
-allow addition of configuration driven Data Integrity features.
+Airflow NGP is a configuration driven DAG generation framework for Airflow. Not only it allow creation of DAGs but also
+allows addition of configuration driven Data Integrity features to your pipeline.
 
 |language| |workflow-engine| |compute-engine|
 
