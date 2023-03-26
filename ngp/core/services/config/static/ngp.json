@@ -5,6 +5,9 @@
         "smtp_ssl": false,
         "email_to": "sanmuk21@gmail.com",
         "email_from": "iam.san.muk@gmail.com"
+    },
+    "spark_config": {
+        "spark_local_mode_submit_prefix": ["spark-submit", "--master", "local"]
     }
 }
 

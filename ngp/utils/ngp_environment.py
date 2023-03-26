@@ -40,9 +40,11 @@ def lookup_environment(env_key: str) -> str:
         return 'C:\\Users\\HP\\OneDrive\\Desktop\\work\\airflow-ngp'
     elif env_key == 'NGP_SERVICE_NOTIFICATION_ALLOW':
         return 'INFO,WARNING,ERROR'
+    elif env_key == 'NGP_SERVICE_SPARK_CONF':
+        return 'spark_config'
 
 
-def dump_environment(file_name: str):
+def dump_environment(file_name: str = None):
     """
     Dump environment into a config file.
 
@@ -54,3 +56,16 @@ def dump_environment(file_name: str):
             if env_key.startswith("NGP_"):
                 f.writelines("{}={}".format(env_key, os.environ[env_key]))
 
+
+def return_environment() -> dict:
+    """
+    Return NGP environment as dictionary.
+
+    :return: Dictionary of environment
+    """
+    result_dict = {}
+    for env_key in os.environ:
+        if env_key.startswith("NGP_"):
+            result_dict[env_key] = os.environ[env_key]
+
+    return result_dict

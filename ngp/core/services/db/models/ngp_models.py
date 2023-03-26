@@ -4,6 +4,8 @@
 
     This module define all NGP DB Models.
 """
+import json
+
 from sqlalchemy.ext.declarative import declarative_base
 import sqlalchemy as db
 from sqlalchemy.orm import validates
@@ -78,4 +80,12 @@ class NGPJob(Base):
     def __repr__(self):
         return "<NGPJob: Id={}, DAG={}, Task={}, Run={}, Status={}>".format(
             self.job_id, self.job_dag_id, self.job_task_id, self.job_run_id, self.job_status)
+
+    # JSON Serializer
+    def job_json_dump(self):
+        return json.dumps({
+            "job_dag_id": self.job_dag_id,
+            "job_task_id": self.job_task_id,
+            "job_run_id": self.job_run_id
+        })
 

@@ -1,0 +1,8 @@
+{
+  "config": {},
+  "tasks": {
+    "dummy_task_01": {"dummy_task_cfg":  12345},
+    "dummy_task_02": "dummy_task.json"
+  },
+  "task_order": []
+}

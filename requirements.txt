@@ -2,3 +2,4 @@ pytest
 jinja2
 alembic
 sqlalchemy
+pyspark
