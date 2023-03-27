@@ -1,1 +1,6 @@
-{"dummy_task_cfg":  12345}
+{
+  "type": "NGP_SPARK",
+  "job_config": {
+    "--driver-memory": "5g"
+  }
+}

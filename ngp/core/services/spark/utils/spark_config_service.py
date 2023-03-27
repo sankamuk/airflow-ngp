@@ -7,10 +7,11 @@
 import os
 import json
 
+from ngp.core.services.config.config_factory import get_config_service
 from ngp.core.services.db.models.ngp_models import NGPJob
 from ngp.utils.navigation import get_path
 from ngp.utils.genaral_utils import load_dict_from_json_file
-from ngp.utils.ngp_environment import return_environment
+from ngp.utils.ngp_environment import return_environment, lookup_environment
 
 
 def get_launcher_module_file() -> str:
@@ -54,7 +55,30 @@ def get_spark_task_config(dag_id: str, task_id: str) -> dict:
         return _task_cfg
 
 
-def get_spark_submit_command(spark_command: list, ngp_job: NGPJob) -> list:
+def get_spark_job_config(ngp_job: NGPJob) -> list:
+    """
+    Read Spark job configuration from environment default or task specific to be used in submit command creation
+
+    :param ngp_job: NGPJob object
+    :return: List to be appended to the submit command
+    """
+    job_config = []
+    job_config_dict = dict()
+    cfg_backend = lookup_environment('NGP_SERVICE_CONFIG_BACKEND')
+    cfg_key = lookup_environment('NGP_SERVICE_SPARK_CONF')
+    spark_config = get_config_service(cfg_backend).get_cfg(cfg_key)
+    if "job_config" in spark_config:
+        job_config_dict.update(spark_config["job_config"])
+    task_config = get_spark_task_config(ngp_job.job_dag_id, ngp_job.job_task_id)
+    if "job_config" in task_config:
+        job_config_dict.update(task_config["job_config"])
+    for ky in job_config_dict:
+        job_config.append(ky)
+        job_config.append(job_config_dict[ky])
+    return job_config
+
+
+def get_spark_submit_command(spark_command: list, ngp_job: NGPJob):
     """
     Create NGP Spark Submit Command
 
@@ -62,6 +86,8 @@ def get_spark_submit_command(spark_command: list, ngp_job: NGPJob) -> list:
     :param ngp_job: NGPJob object
     :return: String representing complete command
     """
+    if get_spark_job_config(ngp_job):
+        spark_command.extend(get_spark_job_config(ngp_job))
     spark_command.append(get_launcher_module_file())
     spark_command.append(ngp_job.job_json_dump())
     spark_command.append(json.dumps(return_environment()))

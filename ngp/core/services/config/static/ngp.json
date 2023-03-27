@@ -7,6 +7,9 @@
         "email_from": "iam.san.muk@gmail.com"
     },
     "spark_config": {
+        "job_config": {
+            "--driver-memory": "512m"
+        },
         "spark_local_mode_submit_prefix": ["spark-submit", "--master", "local"]
     }
 }
