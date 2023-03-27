@@ -42,6 +42,8 @@ def lookup_environment(env_key: str) -> str:
         return 'INFO,WARNING,ERROR'
     elif env_key == 'NGP_SERVICE_SPARK_CONF':
         return 'spark_config'
+    elif env_key == 'NGP_SERVICE_SPARK_MODE':
+        return 'spark_local_runner'
 
 
 def dump_environment(file_name: str = None):

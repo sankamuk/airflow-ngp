@@ -1,6 +1,5 @@
-from ngp.core.services.spark.infra.utils.spark_config_service import get_launcher_module_file, get_spark_task_config
+from ngp.core.services.spark.utils.spark_config_service import get_launcher_module_file, get_spark_task_config
 from ngp.utils.navigation import get_path
-import os
 
 
 def test_get_launcher_module_file():

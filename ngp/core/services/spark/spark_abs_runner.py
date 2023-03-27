@@ -17,7 +17,7 @@ class AbsSparkRunner(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def get_runner(self):
+    def get_job_for_runner(self, ngp_job):
         pass
 
     @abc.abstractmethod
