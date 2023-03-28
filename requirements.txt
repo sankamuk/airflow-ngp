@@ -3,3 +3,6 @@ jinja2
 alembic
 sqlalchemy
 pyspark
+sphinx
+sphinx-design
+furo

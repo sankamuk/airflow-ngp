@@ -11,8 +11,8 @@ def get_config_service(cfg_type: str = 'local_cfg'):
     """
     Creates a Configuration Service which can be used to return configuration value with a key.
 
-    :param cfg_type: Type of configuration backend. default -> local_cfg (file based config)
-    :return: Configuration Service Object.
+    :param cfg_type: String representing configuration backend. default -> local_cfg (file based config)
+    :return: Configuration Service Object implementing :class:`ngp.core.services.config.abs_config.AbsCFG`
     """
     cls_name = get_module("services", "config")[cfg_type]
     return init_class("services", "config", cfg_type, cls_name)

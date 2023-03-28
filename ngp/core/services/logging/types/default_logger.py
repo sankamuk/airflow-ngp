@@ -2,7 +2,7 @@
     default_logger.py
     -------
 
-    This module configure logging service if not configured and return logger.
+    This module configure logging service if not configured and return logger
 """
 from ngp.core.services.logging.abs_logging import AbsLogger, BorgLogger
 from ngp.utils.navigation import get_path
@@ -12,9 +12,11 @@ import logging.config
 
 class DefaultLogger(AbsLogger, BorgLogger):
     """
-    Fetch configuration from file based configuration repository.
-    NOTE:
-        1. Configuration file should be present.
+    Logger which uses Python's logging framework
+
+    .. admonition:: Note
+        * Logger can be configured using file ngp/core/services/config/static/logging.ini
+        * Default setting allows console logging of verbosity INFO
     """
 
     def __init__(self):
@@ -29,9 +31,9 @@ class DefaultLogger(AbsLogger, BorgLogger):
 
     def get_logger(self) -> logging:
         """
-        Returns logger.
+        Returns logger object, this can be used to log
 
-        :return: Logger.
+        :return: Logger object of type :module:`logging`
         """
 
         return logging.getLogger(__name__)

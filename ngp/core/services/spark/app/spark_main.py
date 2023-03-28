@@ -2,7 +2,7 @@
     spark_main.py
     -------
 
-    This module is NGP Spark application entrypoint.
+    This module is NGP Spark application entrypoint
 """
 
 

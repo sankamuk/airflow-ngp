@@ -17,8 +17,8 @@ Base = declarative_base()
 class NGPAudits(Base):
     """
     NGP Audit Model.
-    NOTE:
-        Defines NGP Audit data.
+    .. admonition:: Note
+        Defines NGP Audit record instance represented as a SQLAlchemy Model class
     """
     __tablename__ = 'ngp_audits'
     audit_id = db.Column(db.Integer(), primary_key=True)
@@ -45,6 +45,13 @@ class NGPAudits(Base):
 
     # Representation
     def __repr__(self):
+        """
+        String representation of :class:`NGPAudits`
+        .. admonition:: Note
+            Used for printing
+
+        :return: String
+        """
         return "<NGPAudits: Id={}, DAG={}, Task={}, Run={}, Status={}>".format(
             self.audit_id, self.audit_dag_id, self.audit_task_id, self.audit_run_id, self.audit_job_status)
 
@@ -52,8 +59,9 @@ class NGPAudits(Base):
 class NGPJob(Base):
     """
     NGP Job Model.
-    NOTE:
-        Defines NGP Job data, its mostly used for NGP framework job status maintenance.
+    .. admonition:: Note
+        Defines NGP Job record instance represented as a SQLAlchemy Model class.
+        NGP Job record will also be used for NGP framework job status maintenance.
     """
     __tablename__ = 'ngp_job'
     job_id = db.Column(db.Integer(), primary_key=True)
@@ -78,11 +86,23 @@ class NGPJob(Base):
 
     # Representation
     def __repr__(self):
+        """
+        String representation of :class:`NGPJob`
+        .. admonition:: Note
+            Used for printing
+
+        :return: String
+        """
         return "<NGPJob: Id={}, DAG={}, Task={}, Run={}, Status={}>".format(
             self.job_id, self.job_dag_id, self.job_task_id, self.job_run_id, self.job_status)
 
     # JSON Serializer
     def job_json_dump(self):
+        """
+        String encoded JSON representation of :class:`NGPJob`
+
+        :return: String encoded JSON
+        """
         return json.dumps({
             "job_dag_id": self.job_dag_id,
             "job_task_id": self.job_task_id,

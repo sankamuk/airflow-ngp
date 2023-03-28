@@ -1,3 +1,9 @@
+"""
+    general_utils.py
+    -------
+
+    This module contains general utility functions.
+"""
 import json
 import subprocess
 
@@ -21,9 +27,11 @@ def run_host_command(command_str: list, cwd: str = None, timeout: int = 300) -> 
     Executes command in host and returns status
 
     :param command_str: List representing the command to be executed
-    :param cwd: Work directory for the command
-    :param timeout: Timeout after which the command will be terminated
-    :return: Status dictionary { "status": 0/1, "message": "details" }
+    :param cwd: String representing work directory for the command
+    :param timeout: Integer representing timeout after which the command will be terminated
+    :return: Dictionary representing status, example::
+        { "status": 0, "message": "details" }
+
     """
 
     try:

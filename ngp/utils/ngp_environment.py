@@ -2,7 +2,7 @@
     ngp_environment.py
     -------
 
-    This module helps in different functionality related to get/set of NGP environment property.
+    This module helps in different functionality related to get/set of NGP environment property
 """
 import os
 import configparser
@@ -10,7 +10,7 @@ import configparser
 
 def init_environment():
     """
-    Setup NGP environment.
+    Setup NGP environment
 
     :return: None
     """
@@ -26,10 +26,10 @@ def init_environment():
 
 def lookup_environment(env_key: str) -> str:
     """
-    Lookup in environment for configuration.
+    Lookup in environment for configuration
 
-    :param env_key: Environment configuration key
-    :return: Environment configuration value for the key supplied, else None
+    :param env_key: String representing environment configuration key
+    :return: String representing environment configuration value for the :attr:`env_key`, else None
     """
     # return os.environ.get(env_key, None)
     if env_key == 'NGP_SERVICE_CONFIG_BACKEND':
@@ -48,9 +48,9 @@ def lookup_environment(env_key: str) -> str:
 
 def dump_environment(file_name: str = None):
     """
-    Dump environment into a config file.
+    Dump environment into a config file
 
-    :param file_name: File name to dump the NGP environment.
+    :param file_name: String representing file name to dump the NGP environment
     :return: None
     """
     with open(file_name, 'w') as f:
@@ -61,7 +61,7 @@ def dump_environment(file_name: str = None):
 
 def return_environment() -> dict:
     """
-    Return NGP environment as dictionary.
+    Return NGP environment as dictionary
 
     :return: Dictionary of environment
     """

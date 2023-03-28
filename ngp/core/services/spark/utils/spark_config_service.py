@@ -2,7 +2,7 @@
     spark_config_service.py
     -------
 
-    This module contains utility module related to fetching configuration for a Spark application.
+    This module contains utility module related to fetching configuration for a Spark application
 """
 import os
 import json
@@ -18,7 +18,7 @@ def get_launcher_module_file() -> str:
     """
     Returns the fully qualified path to the Spark application launcher module file
 
-    :return: String local file path
+    :return: String representing local file path
     """
     spark_app_fl = get_path("ngp/core/services/spark/app/spark_main.py")
     if os.path.isfile(spark_app_fl):
@@ -29,10 +29,10 @@ def get_launcher_module_file() -> str:
 
 def get_spark_task_config(dag_id: str, task_id: str) -> dict:
     """
-    Returns a dictionary corresponding to a Spark Application task
+    Returns a dictionary corresponding to a Spark Application task configuration
 
     :param dag_id: String representing DAG id
-    :param task_id: String representing DAG id
+    :param task_id: String representing Task id
     :return: Dictionary representing task config
     """
 
@@ -59,7 +59,7 @@ def get_spark_job_config(ngp_job: NGPJob) -> list:
     """
     Read Spark job configuration from environment default or task specific to be used in submit command creation
 
-    :param ngp_job: NGPJob object
+    :param ngp_job: Object typed :class:`ngp.core.services.db.models.ngp_models.NGPJob`
     :return: List to be appended to the submit command
     """
     job_config = []
@@ -82,9 +82,11 @@ def get_spark_submit_command(spark_command: list, ngp_job: NGPJob):
     """
     Create NGP Spark Submit Command
 
-    :param spark_command: List with command prefix will be appended to complete the command
-    :param ngp_job: NGPJob object
-    :return: String representing complete command
+    :param spark_command: List with command prefix which will be appended to complete the command, example::
+        ["spark-submit", "--master", "local"]
+    :param ngp_job: Object typed :class:`ngp.core.services.db.models.ngp_models.NGPJob`
+    :return: String representing complete command, example::
+        ["spark-submit", "--master", "local", "app.py"]
     """
     if get_spark_job_config(ngp_job):
         spark_command.extend(get_spark_job_config(ngp_job))

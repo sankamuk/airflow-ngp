@@ -15,8 +15,10 @@ def get_path(rel_path: str = None) -> str:
     """
     Returns absolute path corresponding to relative path.
 
-    :param rel_path: Relative path from project root, e.g. ngp/core/services/config/static/ngp.json.
-    :return: Absolute file path.
+    :param rel_path: String representing relative path from project root, example::
+        ngp/core/services/config/static/ngp.json
+    :return: String representing absolute file path, example::
+        /opt/software/airflow-ngp/ngp/core/services/config/static/ngp.json
     """
     ngp_home = lookup_environment("NGP_HOME")
     return os.path.join(ngp_home, *(rel_path.split('/')))
@@ -26,9 +28,14 @@ def get_module(family: str = 'services', mod_type: str = None) -> dict:
     """
     List the modules with classes of specific type. This will be used by factory method to invoke the functionality.
 
-    :param family: Kind of module to look.
-    :param mod_type: Module type.
-    :return: Dictionary of modules and corresponding classes.
+    :param family: String representing kind of module to look, example::
+        services
+    :param mod_type: String representing module type, example::
+        config
+    :return: Dictionary of modules and corresponding classes, example::
+        {
+            "local_cfg": "LocalCfg"
+        }
     """
     module_rel_path = "ngp/core/{}/{}/types".format(family, mod_type)
     module_abs_path = get_path(module_rel_path)
@@ -54,13 +61,17 @@ def init_class(family: str = 'services',
                mod_name: str = 'local_cfg',
                cls_name: str = 'LocalCfg') -> object:
     """
-    List the modules with classes of specific type. This will be used by factory method to invoke the functionality.
+    List the modules with classes of specific type. This will be used by factory method to invoke the functionality
 
-    :param family: Kind of module to look.
-    :param mod_type: Module type.
-    :param mod_name: Module name.
-    :param cls_name: Class name.
-    :return: Initiated object.
+    :param family: String representing kind of module to look, example::
+        services
+    :param mod_type: String representing module type, example::
+        config
+    :param mod_name: String representing module name, example::
+        local_cfg
+    :param cls_name: String representing class name, example::
+        LocalCfg
+    :return: Initiated object of type class named :attr:`cls_name`
     """
     mod_path = "ngp.core.{}.{}.types.{}".format(family, mod_type, mod_name)
     py_module = import_module(mod_path)

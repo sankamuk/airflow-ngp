@@ -2,7 +2,9 @@ import abc
 
 
 class BorgLogger:
-
+    """
+    Singleton parent for Log Handler
+    """
     _logger_config = dict()
 
     def __init__(self):
@@ -10,7 +12,9 @@ class BorgLogger:
 
 
 class AbsLogger(abc.ABC):
-
+    """
+    Abstract Log Handler
+    """
     @abc.abstractmethod
     def get_logger(self):
         pass

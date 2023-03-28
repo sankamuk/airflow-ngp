@@ -1,8 +1,16 @@
+"""
+    spark_abs_runner.py
+    -------
+
+    This module contains parent class for defining Spark execution handler
+"""
 import abc
-from ngp.core.services.db.models.ngp_models import NGPJob
 
 
 class BorgSparkRunner:
+    """
+    Singleton parent for Spark Runner
+    """
 
     _spark_config = dict()
 
@@ -11,7 +19,9 @@ class BorgSparkRunner:
 
 
 class AbsSparkRunner(abc.ABC):
-
+    """
+    Abstract Spark Runner
+    """
     @abc.abstractmethod
     def setup_runner(self):
         pass

@@ -2,7 +2,7 @@
     local_cfg.py
     -------
 
-    This module interacts with local file based configuration repo.
+    This module interacts with local file based configuration repo
 """
 from ngp.core.services.config.abs_config import BorgCFG, AbsCFG
 from ngp.utils.navigation import get_path
@@ -12,9 +12,10 @@ import json
 
 class LocalCfg(AbsCFG, BorgCFG):
     """
-    Fetch configuration from file based configuration repository.
-    NOTE:
-        1. Configuration file should be present.
+    Fetch configuration from file based configuration repository
+
+    .. admonition:: Note
+        * Configuration file should be present
     """
 
     def __init__(self):
@@ -28,10 +29,10 @@ class LocalCfg(AbsCFG, BorgCFG):
 
     def get_cfg(self, cfg_key: str = None) -> dict:
         """
-        Returns configuration item for key passed as argument.
+        Returns configuration item for key passed as argument
 
-        :param cfg_key: Configuration key.
-        :return: Configuration value or None.
+        :param cfg_key: String representing configuration key
+        :return: String representing configuration value or None for :attr:`cfg_key`
         """
 
         return self._cfg_config.get(cfg_key, None)

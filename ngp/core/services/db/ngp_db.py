@@ -2,7 +2,7 @@
     ngp_db.py
     -------
 
-    This module controls NGP backend database interaction.
+    This module controls NGP backend database interaction
 """
 import os
 import sqlalchemy as db
@@ -115,8 +115,8 @@ def add_audit(db_session, audit: NGPAudits):
     """
     Persist an audit record
 
-    :param db_session: SQLAlchemy DB Session
-    :param audit: NGPAudits object
+    :param db_session: SQLAlchemy DB Session returned from :meth:`get_session`
+    :param audit: Object typed :class:`ngp.core.services.db.models.ngp_models.NGPAudits`
     :return: None
     """
     _add_single_object_in_session(db_session, audit)
@@ -125,13 +125,12 @@ def add_audit(db_session, audit: NGPAudits):
 
 def search_audit(db_session, audit_filter: tuple = None):
     """
-    Search audit record
-    Parameter:
-        Dynamic filter, e.g. (NGPAudits.audit_dag_id == "dummy", NGPAudits.audit_task_id == "dummy")
+    Search audit record(s)
 
-    :param db_session: SQLAlchemy DB Session
-    :param audit_filter: NGPAudits object search filter
-    :return: List of NGPAudits objects
+    :param db_session: SQLAlchemy DB Session returned from :meth:`get_session`
+    :param audit_filter: Tuple representing NGPAudits object search filter, example::
+        (NGPAudits.audit_dag_id == "dummy", NGPAudits.audit_task_id == "dummy")
+    :return: List of NGPAudits objects of type :class:`ngp.core.services.db.models.ngp_models.NGPAudits`
     """
     return db_session.query(NGPAudits).filter(*audit_filter).all() if audit_filter \
         else db_session.query(NGPAudits).all()
@@ -139,14 +138,13 @@ def search_audit(db_session, audit_filter: tuple = None):
 
 def update_audit(db_session, audit_filter: tuple = None, update_dict: dict = None):
     """
-    Update an audit record
-    Parameter:
-        Dynamic filter, e.g. (NGPAudits.audit_dag_id == "dummy", NGPAudits.audit_task_id == "dummy")
-        Update dictionary, e.g. {NGPAudits.audit_detail: "dummy"}
+    Update an audit record(s)
 
-    :param db_session: SQLAlchemy DB Session
-    :param audit_filter: NGPAudits object search filter
-    :param update_dict: NGPAudits object update dictionary
+    :param db_session: SQLAlchemy DB Session returned from :meth:`get_session`
+    :param audit_filter: Tuple representing NGPAudits object search filter, example::
+        (NGPAudits.audit_dag_id == "dummy", NGPAudits.audit_task_id == "dummy")
+    :param update_dict: NGPAudits object update dictionary, example::
+        {NGPAudits.audit_detail: "dummy"}
     :return: None
     """
     search_result = db_session.query(NGPAudits).filter(*audit_filter) if audit_filter else db_session.query(NGPAudits)
@@ -158,8 +156,8 @@ def add_job(db_session, ngp_job: NGPJob):
     """
     Persist an job record
 
-    :param db_session: SQLAlchemy DB Session
-    :param ngp_job: NGPJob object
+    :param db_session: SQLAlchemy DB Session returned from :meth:`get_session`
+    :param ngp_job: Object typed :class:`ngp.core.services.db.models.ngp_models.NGPJob`
     :return: None
     """
     _add_single_object_in_session(db_session, ngp_job)
@@ -168,13 +166,12 @@ def add_job(db_session, ngp_job: NGPJob):
 
 def search_job(db_session, job_filter: tuple = None):
     """
-    Search job record
-    Parameter:
-        Dynamic filter, e.g. (NGPJob.job_id == "dummy", )
+    Search job record(s)
 
-    :param db_session: SQLAlchemy DB Session
-    :param job_filter: NGPJob object search filter
-    :return: List of NGPJob objects
+    :param db_session: SQLAlchemy DB Session returned from :meth:`get_session`
+    :param job_filter: NGPJob object search filter, example::
+        (NGPJob.job_id == "dummy", )
+    :return: List of object typed :class:`ngp.core.services.db.models.ngp_models.NGPJob`
     """
     return db_session.query(NGPJob).filter(*job_filter).all() if job_filter \
         else db_session.query(NGPJob).all()
@@ -182,14 +179,13 @@ def search_job(db_session, job_filter: tuple = None):
 
 def update_job(db_session, job_filter: tuple = None, update_dict: dict = None):
     """
-    Update an job record
-    Parameter:
-        Dynamic filter, e.g. (NGPJob.job_id == "dummy", )
-        Update dictionary, e.g. {NGPJob.job_detail == "dummy", }
+    Update an job record(s)
 
-    :param db_session: SQLAlchemy DB Session
-    :param job_filter: NGPJob object search filter
-    :param update_dict: NGPJob object update dictionary
+    :param db_session: SQLAlchemy DB Session returned from :meth:`get_session`
+    :param job_filter: NGPJob object search filter, example::
+        (NGPJob.job_id == "dummy", )
+    :param update_dict: NGPJob object update dictionary, example::
+        {NGPJob.job_detail == "dummy", }
     :return: None
     """
     search_result = db_session.query(NGPJob).filter(*job_filter) if job_filter else db_session.query(NGPJob)
@@ -199,12 +195,11 @@ def update_job(db_session, job_filter: tuple = None, update_dict: dict = None):
 
 def delete_job(db_session, job_filter: tuple = None):
     """
-    Delete an job record
-    Parameter:
-        Dynamic filter, e.g. (NGPJob.job_id == "dummy", )
+    Delete an job record(s)
 
     :param db_session: SQLAlchemy DB Session
-    :param job_filter: NGPJob object search filter
+    :param job_filter: NGPJob object search filter, example::
+        (NGPJob.job_id == "dummy", )
     :return: None
     """
     search_result = db_session.query(NGPJob).filter(*job_filter) if job_filter else db_session.query(NGPJob)

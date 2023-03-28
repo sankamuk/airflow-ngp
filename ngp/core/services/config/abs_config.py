@@ -2,6 +2,9 @@ import abc
 
 
 class BorgCFG:
+    """
+    Singleton parent for Configuration Handler
+    """
     _cfg_config = dict()
 
     def __init__(self):
@@ -9,6 +12,9 @@ class BorgCFG:
 
 
 class AbsCFG(abc.ABC):
+    """
+    Abstract Configuration Handler
+    """
 
     @abc.abstractmethod
     def get_cfg(self,
