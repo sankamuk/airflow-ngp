@@ -2,5 +2,29 @@
   "type": "NGP_SPARK",
   "job_config": {
     "--driver-memory": "5g"
+  },
+  "input": {
+    "source01": {
+      "loader": "s3-file",
+      "is_cache": false,
+      "loader_cfg": {
+        "is_absolute": true,
+        "path": "s3://{}/datalake/dummy/dummy_data/",
+        "type": "separated",
+        "header": true
+      }
+    }
+  },
+  "pyspark": {
+    "function": "ngp.app.dummy.dummy_task.dummy_transform",
+    "arguments": {
+      "dummy_argument": "example"
+    }
+  },
+  "output": {
+    "type": "table",
+    "target": "dummy.dummy_table",
+    "partition": null,
+    "format": "hive"
   }
 }

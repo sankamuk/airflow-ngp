@@ -1,10 +1,18 @@
 {
-  "config": {},
+  "config": {
+    "schedule": "@daily"
+  },
   "tasks": {
     "dummy_task_01": {
-      "type": "NGP_SPARK"
+      "type": "NGP_SPARK",
+      "sql": {
+        "type": "ddl",
+        "query": "create table if not exist dummy.dummy_table (id int, name string, age int, phone int, email string)"
+      }
     },
     "dummy_task_02": "dummy_task.json"
   },
-  "task_order": []
+  "task_order": [
+    "dummy_task_01", "dummy_task_02"
+  ]
 }
